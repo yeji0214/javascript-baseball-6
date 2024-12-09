@@ -12,11 +12,11 @@ export const MESSAGES = {
         RETRY_PROMPT: '게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.\n',
     },
     ERROR: {
-        NUMBER_NOT_NUMBER: '숫자만 입력해주세요\n',
-        NUMBER_OUT_OF_RANGE: '1부터 9 사이의 숫자만 입력해주세요.\n',
-        NUMBER_DUPLICATION: '중복되는 숫자가 있습니다.\n',
-        WINNING_NUMBERS_NOT_THREE: '숫자는 3개를 입력해주세요.\n',
-        RETRY_NOT_NUMBER: '게임 재시작 여부는 숫자로 입력해주세요.\n',
-        RETRY_NOT_1_OR_2: '1 또는 2를 입력해주세요.\n',
+        NUMBER_NOT_NUMBER: '[ERROR] 숫자만 입력해주세요\n',
+        NUMBER_OUT_OF_RANGE: '[ERROR] 1부터 9 사이의 숫자만 입력해주세요.\n',
+        NUMBER_DUPLICATION: '[ERROR] 중복되는 숫자가 있습니다.\n',
+        WINNING_NUMBERS_NOT_THREE: '[ERROR] 숫자는 3개를 입력해주세요.\n',
+        RETRY_NOT_NUMBER: '[ERROR] 게임 재시작 여부는 숫자로 입력해주세요.\n',
+        RETRY_NOT_1_OR_2: '[ERROR] 1 또는 2를 입력해주세요.\n',
     }
 };

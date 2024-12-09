@@ -6,11 +6,13 @@ const mockQuestions = (inputs) => {
 
   MissionUtils.Console.readLineAsync.mockImplementation(() => {
     const input = inputs.shift();
+    if (!input) throw new Error("[ERROR] 입력값이 비어 있습니다.");
     return Promise.resolve(input);
   });
 };
 
 const mockRandoms = (numbers) => {
+  if (!numbers || numbers.length === 0) throw new Error("[ERROR] 잘못된 랜덤 숫자 배열입니다.");
   MissionUtils.Random.pickNumberInRange = jest.fn();
   numbers.reduce((acc, number) => {
     return acc.mockReturnValueOnce(number);
@@ -25,8 +27,7 @@ const getLogSpy = () => {
 
 describe("숫자 야구 게임", () => {
   test("게임 종료 후 재시작", async () => {
-    // given
-    const randoms = [1, 3, 5, 5, 8, 9];
+    const randoms = [5, 8, 9];
     const answers = ["246", "135", "1", "597", "589", "2"];
     const logSpy = getLogSpy();
     const messages = ["낫싱", "3스트라이크", "1볼 1스트라이크", "3스트라이크", "게임 종료"];
@@ -34,27 +35,22 @@ describe("숫자 야구 게임", () => {
     mockRandoms(randoms);
     mockQuestions(answers);
 
-    // when
     const app = new App();
     await expect(app.play()).resolves.not.toThrow();
 
-    // then
     messages.forEach((output) => {
       expect(logSpy).toHaveBeenCalledWith(expect.stringContaining(output));
     });
   });
 
   test("예외 테스트", async () => {
-    // given
     const randoms = [1, 3, 5];
     const answers = ["1234"];
 
     mockRandoms(randoms);
     mockQuestions(answers);
 
-    // when & then
     const app = new App();
-
     await expect(app.play()).rejects.toThrow("[ERROR]");
   });
 });
