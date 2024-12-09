@@ -1,11 +1,18 @@
-import { Console } from '@woowacourse/mission-utils';
 import Computer from './Computer.js';
 import { compareNumbers } from './Result.js';
-import { getUserNumbers } from './InputView.js';
+import { getUserNumbers, getRetry } from './InputView.js';
 import { displayGameStart, displayResult } from './OutputView.js';
 
 export const start = async () => {
     displayGameStart();
+
+    while (true) {
+        await newGame();
+        if (await getRetry() === 2) break;
+    }
+}
+
+const newGame = async () => {
     const numbers = new Computer().getNumbers();
     let strike = 0;
 
